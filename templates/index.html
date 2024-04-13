@@ -76,7 +76,7 @@
 fetch('/identify', {
          method: 'POST',
          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-         body: 'code='+'111111'
+         body: 'code='+code
        }).then(res => res.text()).then(res => alert(res))
             });
     </script>
