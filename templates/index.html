@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 24px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Verification Code</h2>
+        <form id="verificationForm"><center>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required>
+            <input type="text" maxlength="1" pattern="\d" title="Please enter a number" required></center>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("verificationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            var code = ""; 
+            var inputs = this.getElementsByTagName("input"); 
+            for (var i = 0; i < inputs.length - 1; i++) { 
+                code += inputs[i].value; 
+            }
+  let headers = {
+    "Content-Type": "multipart/form-data"
+    }
+            fetch('./identify', {
+    			method: "POST",
+    			headers: headers,
+    			body: "code="+code
+    	        })
+            });
+    </script>
+</body>
+</html>
