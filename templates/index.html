@@ -73,11 +73,11 @@
   let headers = {
     "Content-Type": "multipart/form-data"
     }
-            fetch('./identify', {
-    			method: "POST",
-    			headers: headers,
-    			body: "code="+code
-    	        })
+fetch('/identify', {
+         method: 'POST',
+         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+         body: 'code='+code
+       })
             });
     </script>
 </body>
